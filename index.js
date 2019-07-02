@@ -3,10 +3,14 @@ const fs = require('fs');
 const express = require('express');
 const mongoose = require('mongoose');
 const path = require("path");
+const bodyParser = require('body-parser');
 const scrape = require('./routes/scrape.js');
+const search = require('./routes/search.js');
 const app = express();
 
+app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.json());
+app.use(express.static('static'));
 
 // connecting to mongodb
 const mongouri = 'mongodb://pooja:poojakrawl1@ds245927.mlab.com:45927/krawl';
@@ -21,6 +25,7 @@ app.get('/' ,(req,res) => {
 
 // use routes
 app.use('/scrape' , scrape);
+app.use('/search' , search);
 
 // Starting server on port
 port = process.env.PORT || 5000;
