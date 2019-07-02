@@ -4,19 +4,52 @@ const cheerio = require('cheerio');
 const mongoose = require('mongoose');
 const router = express.Router();
 
+// Defining schema for repo
+const repoSchema = mongoose.Schema({
+    repo_title:{ type:String,required:true},
+    repo_author :{ type:String},
+    repo_des:{ type:String},
+    repo_language:{ type:String},
+    repo_updatetime:{ type:String}
+});
+const Repo = mongoose.model( 'Repo' , repoSchema);
+
 // Function to scrape data
-let getData = (html) => {
-    data=[];
+// let getData = (html) => {
+//     data=[];
+//     const $ = cheerio.load(html);
+//     $('li.repo-list-item').each((i,ele) => {
+//         let repo_name = $(ele).find('h3 a').text().trim().split("/");
+//         data.push({
+//             repo_title : repo_name[1],
+//             repo_author :repo_name[0],
+//             repo_des:$(ele).find('p.mb-2').text().trim().replace("\n",""),
+//             repo_language:$(ele).find('span.repo-language-color + span').text().trim().replace("\n",""),
+//             repo_updatetime:$(ele).find('p.mb-0').text().trim().replace("\n","")
+//         });
+//     });
+//     console.log("data",data);
+// }
+
+// Function to Post data to mlab
+let postData = (html) => {
     const $ = cheerio.load(html);
-    $('ul.repo-list').each((i,ele) => {
-        data.push({
-            repo_item : $(ele)
+    $('li.repo-list-item').each((i,ele) => {
+        let repo_name = $(ele).find('h3 a').text().trim().split("/");
+        const repo = new Repo({
+            repo_title : repo_name[1],
+            repo_author :repo_name[0],
+            repo_des:$(ele).find('p.mb-2').text().trim().replace("\n",""),
+            repo_language:$(ele).find('span.repo-language-color + span').text().trim().replace("\n",""),
+            repo_updatetime:$(ele).find('p.mb-0').text().trim().replace("\n","")
         });
+        repo.save()
+        .then(resultrepo => {
+            console.log("resultrepo", resultrepo);
+        })
+        .catch((err) => {console.log(err);});
     });
-    console.log("data",data);
 }
-
-
 
 
 //GET requests 
@@ -24,9 +57,9 @@ let getData = (html) => {
 router.get('/',async (req ,res) => {
     axios.get('https://github.com/search?o=desc&q=nodejs&s=updated&type=Repositories')
     .then(response => {
-        // console.log(response.data);
         console.log("response obtained");
-        getData(response.data);
+        // getData(response.data);
+        postData(response.data);
     })
     .catch(error => {
         console.log(error);
@@ -34,8 +67,5 @@ router.get('/',async (req ,res) => {
     res.send("hello");
 });
 
-{/* <ul class="repo-list">
-    <li class="repo-list-item"></li>
-</ul> */}
 
 module.exports = router ;
