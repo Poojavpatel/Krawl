@@ -7,7 +7,8 @@ const repoSchema = mongoose.Schema({
     repo_author :{ type:String},
     repo_des:{ type:String},
     repo_language:{ type:String},
-    repo_updatetime:{ type:String}
+    repo_updatetime:{ type:String},
+    repo_link:{type:String}
 });
 const Repo = mongoose.model( 'Repo' , repoSchema);
 

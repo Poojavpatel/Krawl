@@ -50,7 +50,7 @@ h1,h2{
 .header .account{
     font-size: 0.9rem;
     border: 2px solid #00DF80;
-    padding: 0.45% 1.8%;
+    padding: 0.5% 1.8%;
     border-radius: 5%;
     color: #8a8a8a;
     margin: 0% 2%;
@@ -164,4 +164,8 @@ background: linear-gradient(to top, #3c1053,#a05181); */
     display: flex;
     justify-content: space-between;
     padding: 2% 5%;
+}
+a{
+    text-decoration: none;
+    text-color:initial;
 }

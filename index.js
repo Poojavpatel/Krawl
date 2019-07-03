@@ -12,6 +12,8 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(express.static('static'));
 app.use(express.urlencoded())
+app.set('view engine', 'html');
+app.engine('html', require('ejs').renderFile);
 
 // connecting to mongodb
 const mongouri = 'mongodb://pooja:poojakrawl1@ds245927.mlab.com:45927/krawl';

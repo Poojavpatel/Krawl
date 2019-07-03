@@ -11,7 +11,7 @@ router.post('/',async (req ,res) => {
     console.log(req.body);
     const query = req.body.searchinp;
     const resrepo = await Repo.find({repo_title:query});
-    res.send(resrepo);
+    res.render(__dirname+'/../static/index.html',{resrepo:resrepo});
 });
 
 module.exports = router ;
