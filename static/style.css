@@ -83,24 +83,19 @@ form.searchform{
     width: 60%;
 }
 .inputfield{
-    width: 100%;
+    width: 80%;
     height:3.2rem;
     position: relative;
     border: 1.2px solid #959299;
     border-radius: 1.5rem;
+    display: flex;
 }
 .inputfield button{
     background: 0 0;
     border: 0;
-    width: 90%;
+    width: 20%;
     height: 100%;
-    position: absolute;
-    left: 2.5%;
-    padding: 0;
     cursor: pointer;
-    display: flex;
-    justify-content: center;
-    align-items: center;
     text-transform: none;
     overflow: hidden;
 }
@@ -137,45 +132,36 @@ input#search{
 }
 .card{
     height:28vh;
-    flex-basis: 20%;
-    display: flex;
-    flex-direction: row;
-    flex-wrap: nowrap;
-    /* overflow: hidden; */
+    flex-basis: 30%;
     margin-bottom: 5%;
     border-radius: 3%;
     background:rgb(246, 246, 246);
+    background: #6c3290;
+    color: white;
+    position: relative;
+/* background: -webkit-linear-gradient(to top, #3c1053,#a05181);
+background: linear-gradient(to top, #3c1053,#a05181); */
 }
 /* subtle box shadow */
 .card{
     box-shadow: 0px 5px 5.5px rgba(0,0,0,0.1);
+    padding: 2% 3%;
 }
 .card .title{
-    margin: auto;
-    font-size: 1.2rem;
-    color: white;
+    text-align: center;
+    font-size: 1.3rem;
 }
-/* Gradients for cards */
-.card1{
-    background: #2193b0;
-    background: -webkit-linear-gradient(to bottom, #6dd5ed, #2193b0);
-    background: linear-gradient(to bottom, #6dd5ed, #2193b0);
-
+.card .desc{
+    font-size: 0.95rem;
+    margin-top:5%;
 }
-.card2{
-    background: #ad5389;
-background: -webkit-linear-gradient(to top, #3c1053,#a05181);
-background: linear-gradient(to top, #3c1053,#a05181);
-
-}
-.card3{
-    background: #11998e;
-background: -webkit-linear-gradient(to bottom, #38ef7d, #29f175);
-background: linear-gradient(to bottom, #38ef7d, #29f175);
-
-}
-.card4{
-    background: #0cebeb;
-    background: -webkit-linear-gradient(to bottom, #0cebeb, #20e3b2, #29ffc6);
-    background: linear-gradient(to bottom, #0cebeb, #20e3b2, #29ffc6);
+.cardbot{
+    position: absolute;
+    bottom: 0%;
+    left: 0%;
+    right: 0%;
+    height: 20%;
+    display: flex;
+    justify-content: space-between;
+    padding: 2% 5%;
 }

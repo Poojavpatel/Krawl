@@ -1,18 +1,8 @@
 const express = require('express');
 const axios = require('axios');
 const cheerio = require('cheerio');
-const mongoose = require('mongoose');
+const {Repo} = require('../models/repo');
 const router = express.Router();
-
-// Defining schema for repo
-const repoSchema = mongoose.Schema({
-    repo_title:{ type:String,required:true},
-    repo_author :{ type:String},
-    repo_des:{ type:String},
-    repo_language:{ type:String},
-    repo_updatetime:{ type:String}
-});
-const Repo = mongoose.model( 'Repo' , repoSchema);
 
 // Function to scrape data
 // let getData = (html) => {
@@ -66,6 +56,5 @@ router.get('/',async (req ,res) => {
     });
     res.send("hello");
 });
-
 
 module.exports = router ;
