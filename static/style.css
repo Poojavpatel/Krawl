@@ -169,3 +169,6 @@ a{
     text-decoration: none;
     text-color:initial;
 }
+svg{
+    margin:2%;
+}
